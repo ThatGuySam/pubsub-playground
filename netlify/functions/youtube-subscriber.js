@@ -8,6 +8,14 @@ const pubSubAckResponse = {
 
 exports.handler = async (event, context) => {
   console.log('event', event)
+  
+  const hasChallenge = typeof(event.queryStringParameters['hub.challenge']) !== 'undefined'
+  
+  
+  if ( hasChallenge ) {
+     ...pubSubAckResponse,
+     body: event.queryStringParameters['hub.challenge']
+  }
 
   return {
     ...pubSubAckResponse
