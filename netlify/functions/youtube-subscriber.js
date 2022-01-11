@@ -13,9 +13,11 @@ exports.handler = async (event, context) => {
   
   
   if ( hasChallenge ) {
-     ...pubSubAckResponse,
-     statusCode: 200,
-     body: event.queryStringParameters['hub.challenge']
+     return {
+        ...pubSubAckResponse,
+        statusCode: 200,
+        body: event.queryStringParameters['hub.challenge']
+     }
   }
 
   return {
